@@ -1,5 +1,6 @@
 package seu.lar.api.controller;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,13 +22,15 @@ public class immobileController {
     }
 
     @GetMapping
-    public List<Immobile> getAllImmobiles() {
-        return immobileRepository.findAll();
+    public ResponseEntity<List<Immobile>> getAllImmobiles() {
+        List<Immobile> immobiles = immobileRepository.findAll();
+        return ResponseEntity.ok(immobiles);
     }
 
     @GetMapping("/{id}")
-    public Immobile getImmobileById(@PathVariable Long id) {
+    public ResponseEntity<Immobile> getImmobileById(@PathVariable Long id) {
         return immobileRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Imóvel não encontrado"));
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
     }
 }

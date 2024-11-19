@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import seu.lar.api.user.User;
 
 @Entity
 @Table(name = "immobile", schema = "public")
@@ -23,5 +24,9 @@ public class Immobile {
     private boolean status;
     private String type;
     private String purpose;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "user_id")
+    private User user;
 
 }
