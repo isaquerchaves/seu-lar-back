@@ -1,9 +1,7 @@
 package seu.lar.api.controller;
 
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import seu.lar.api.model.profile.Profile;
 import seu.lar.api.model.profile.ProfileRepository;
 
@@ -23,5 +21,12 @@ public class profileController {
     public ResponseEntity<List<Profile>> getAllProfiles() {
         List<Profile> profiles = profileRepository.findAll();
         return ResponseEntity.ok(profiles);
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Profile> getProfileById(@PathVariable Long id) {
+        return profileRepository.findById(id)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
     }
 }
