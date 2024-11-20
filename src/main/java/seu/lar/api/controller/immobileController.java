@@ -5,9 +5,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import seu.lar.api.immobile.Immobile;
-import seu.lar.api.immobile.ImmobileRepository;
-import seu.lar.api.exception.ResourceNotFoundException;
+import seu.lar.api.model.immobile.Immobile;
+import seu.lar.api.model.immobile.ImmobileRepository;
 
 import java.util.List;
 
@@ -17,7 +16,7 @@ public class immobileController {
 
     private final ImmobileRepository immobileRepository;
 
-    public immobileController(ImmobileRepository immobileRepository) {
+    public immobileController(seu.lar.api.model.immobile.ImmobileRepository immobileRepository) {
         this.immobileRepository = immobileRepository;
     }
 

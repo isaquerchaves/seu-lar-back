@@ -1,10 +1,10 @@
-package seu.lar.api.immobile;
+package seu.lar.api.model.immobile;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import seu.lar.api.user.User;
+import seu.lar.api.model.user.User;
 
 @Entity
 @Table(name = "immobile", schema = "public")

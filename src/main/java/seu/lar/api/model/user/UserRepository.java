@@ -1,4 +1,4 @@
-package seu.lar.api.user;
+package seu.lar.api.model.user;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

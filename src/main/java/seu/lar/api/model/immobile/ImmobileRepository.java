@@ -1,4 +1,4 @@
-package seu.lar.api.immobile;
+package seu.lar.api.model.immobile;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
