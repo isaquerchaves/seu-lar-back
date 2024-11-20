@@ -20,7 +20,10 @@ public class Profile {
     private String city;
     private String state;
 
+    @Column(name = "user_id")
+    private String userId;
+
     @OneToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "user_id")
-    private User user;
+    @JoinColumn(name = "user_id", referencedColumnName = "id", insertable = false, updatable = false)
+    private User userData;
 }

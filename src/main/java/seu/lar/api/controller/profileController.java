@@ -23,9 +23,9 @@ public class profileController {
         return ResponseEntity.ok(profiles);
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<Profile> getProfileById(@PathVariable Long id) {
-        return profileRepository.findById(id)
+    @GetMapping("/{userId}")
+    public ResponseEntity<Profile> getProfileByUserId(@PathVariable String userId) {
+        return profileRepository.findByUserId(userId)
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
     }
