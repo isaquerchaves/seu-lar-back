@@ -30,10 +30,19 @@ public class profileController {
     }
 
     @PostMapping
-    public ResponseEntity<Profile> createProfile(@RequestBody ProfileDTO profileDTO) {
+    public ResponseEntity<String> createProfile(@RequestBody ProfileDTO profileDTO) {
+        boolean existsCreci = profileRepository.existsByCreci(profileDTO.creci());
+        boolean existsUserId = profileRepository.existsByUserId(profileDTO.user_id());
+
+        if (existsUserId) {
+            return ResponseEntity.status(409).body("Perfil já existe para o Usuário informado.");
+        }
+
+        if (existsCreci) {
+            return ResponseEntity.status(409).body("Perfil já existe com o CRECI informado.");
+        }
 
         profileRepository.save(new Profile(profileDTO) );
-
         return ResponseEntity.ok().build();
     }
 }
