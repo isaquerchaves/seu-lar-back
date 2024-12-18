@@ -1,5 +1,7 @@
 package seu.lar.api.controller;
 
+import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -12,13 +14,10 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/immobiles")
+@RequiredArgsConstructor
 public class immobileController {
 
     private final ImmobileRepository immobileRepository;
-
-    public immobileController(seu.lar.api.model.immobile.ImmobileRepository immobileRepository) {
-        this.immobileRepository = immobileRepository;
-    }
 
     @GetMapping
     public ResponseEntity<List<Immobile>> getAllImmobiles() {

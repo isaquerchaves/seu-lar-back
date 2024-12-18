@@ -1,5 +1,6 @@
 package seu.lar.api.controller;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import seu.lar.api.model.profile.Profile;
@@ -9,13 +10,10 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/profiles")
+@RequiredArgsConstructor
 public class profileController {
 
     private final ProfileRepository profileRepository;
-
-    public profileController(ProfileRepository profileRepository) {
-        this.profileRepository = profileRepository;
-    }
 
     @GetMapping
     public ResponseEntity<List<Profile>> getAllProfiles() {
