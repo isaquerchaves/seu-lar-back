@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import seu.lar.api.model.profile.Profile;
+import seu.lar.api.model.profile.ProfileDTO;
 import seu.lar.api.model.profile.ProfileRepository;
 
 import java.util.List;
@@ -26,5 +27,13 @@ public class profileController {
         return profileRepository.findByUserId(userId)
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
+    }
+
+    @PostMapping
+    public ResponseEntity<Profile> createProfile(@RequestBody ProfileDTO profileDTO) {
+
+        profileRepository.save(new Profile(profileDTO) );
+
+        return ResponseEntity.ok().build();
     }
 }

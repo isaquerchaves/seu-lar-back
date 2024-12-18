@@ -26,4 +26,12 @@ public class Profile {
     @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id", referencedColumnName = "id", insertable = false, updatable = false)
     private User userData;
+
+    public Profile(ProfileDTO profileDTO) {
+        this.creci = profileDTO.creci();
+        this.phone = profileDTO.phone();
+        this.city = profileDTO.city();
+        this.state = profileDTO.state();
+        this.userId = profileDTO.user_id();
+    }
 }
