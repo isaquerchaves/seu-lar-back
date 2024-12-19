@@ -1,5 +1,7 @@
 package seu.lar.api.controller;
 
+import jakarta.transaction.Transactional;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -43,6 +45,28 @@ public class profileController {
         }
 
         profileRepository.save(new Profile(profileDTO) );
+        return ResponseEntity.ok().build();
+    }
+
+    @PutMapping("/{userId}")
+    @Transactional
+    public ResponseEntity<String> updateProfile(@PathVariable String userId, @RequestBody @Valid ProfileDTO profileDTO) {
+        var optionalProfile = profileRepository.findByUserId(userId);
+
+        if (optionalProfile.isEmpty()) {
+            return ResponseEntity.status(404).body("Perfil não encontrado");
+        }
+
+        Profile profile = optionalProfile.get();
+
+        if (profileDTO.creci() != null) {
+            var existingCreci = profileRepository.findByCreci(profileDTO.creci());
+            if (existingCreci.isPresent() && !existingCreci.get().getId().equals(profile.getId())) {
+                return ResponseEntity.status(404).body("Creci já está em uso");
+            }
+        }
+
+        profile.updateInfo(profileDTO);
         return ResponseEntity.ok().build();
     }
 }

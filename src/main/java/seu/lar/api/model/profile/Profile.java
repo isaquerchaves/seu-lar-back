@@ -34,4 +34,19 @@ public class Profile {
         this.state = profileDTO.state();
         this.userId = profileDTO.user_id();
     }
+
+    public void updateInfo(ProfileDTO profileDTO) {
+        if (profileDTO.creci() != null) {
+            this.creci = profileDTO.creci();
+        }
+        if (profileDTO.phone() != null) {
+            this.phone = profileDTO.phone();
+        }
+        if (profileDTO.city() != null) {
+            this.city = profileDTO.city();
+        }
+        if (profileDTO.state() != null) {
+            this.state = profileDTO.state();
+        }
+    }
 }
