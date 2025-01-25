@@ -19,7 +19,7 @@ public class ApiApplication {
 			@Override
 			public void addCorsMappings(CorsRegistry registry) {
 				registry.addMapping("/**")
-						.allowedOrigins("http://localhost:3000", "https://seu-lar-back-production.up.railway.app" )
+						.allowedOrigins("http://localhost:3000", "https://seu-lar-back-production.up.railway.app", "https://seu-lar.vercel.app/" )
 						.allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
 						.allowedHeaders("*")
 						.allowCredentials(true);
