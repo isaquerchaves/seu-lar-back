@@ -24,6 +24,12 @@ public class profileController {
         return ResponseEntity.ok(profiles);
     }
 
+    @GetMapping("/active")
+    public ResponseEntity<List<Profile>> getActiveProfiles() {
+        List<Profile> activeProfiles = profileRepository.findByActiveTrue();
+        return ResponseEntity.ok(activeProfiles);
+    }
+
     @GetMapping("/{userId}")
     public ResponseEntity<Profile> getProfileByUserId(@PathVariable String userId) {
         return profileRepository.findByUserId(userId)

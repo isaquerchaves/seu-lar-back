@@ -19,6 +19,7 @@ public class Profile {
     private Long phone;
     private String city;
     private String state;
+    private Boolean active;
 
     @Column(name = "user_id")
     private String userId;
@@ -32,6 +33,7 @@ public class Profile {
         this.phone = profileDTO.phone();
         this.city = profileDTO.city();
         this.state = profileDTO.state();
+        this.active = profileDTO.active();
         this.userId = profileDTO.user_id();
     }
 
@@ -47,6 +49,9 @@ public class Profile {
         }
         if (profileDTO.state() != null) {
             this.state = profileDTO.state();
+        }
+        if (profileDTO.active() != null) {
+            this.active = profileDTO.active();
         }
     }
 }
