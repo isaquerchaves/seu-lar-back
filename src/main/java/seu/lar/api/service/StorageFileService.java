@@ -2,15 +2,12 @@ package seu.lar.api.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import software.amazon.awssdk.core.sync.RequestBody;
 import software.amazon.awssdk.services.s3.S3Client;
 import software.amazon.awssdk.services.s3.model.PutObjectRequest;
 
-import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.UUID;
 
@@ -27,7 +24,7 @@ public class StorageFileService {
     private String endpoint;
 
     public String uploadFile(MultipartFile file, String user_id) {
-        String uniqueFileName = UUID.randomUUID() + "_" + user_id + "_" + file.getOriginalFilename();
+        String uniqueFileName = UUID.randomUUID() + "_" + user_id;
 
         try {
             PutObjectRequest objectRequest = PutObjectRequest.builder()

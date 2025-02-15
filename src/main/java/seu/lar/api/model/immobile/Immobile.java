@@ -5,7 +5,11 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import seu.lar.api.config.ListStringConverter;
 import seu.lar.api.model.user.User;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Entity
 @Table(name = "immobile", schema = "public")
@@ -25,13 +29,12 @@ public class Immobile {
     private String type;
     private String purpose;
     private String user_id;
-    private String image_url;
 
-//    @ManyToOne(fetch = FetchType.EAGER)
-//    @JoinColumn(name = "user_id")
-//    private User user;
+    @Convert(converter = ListStringConverter.class)
+    @Column(name = "image_url", columnDefinition = "TEXT[]")
+    private List<String> image_url;
 
-    public Immobile(String title, String description, String district, String city, String state, double price, boolean status, String type, String purpose, String user_id, String image_url) {
+    public Immobile(String title, String description, String district, String city, String state, double price, boolean status, String type, String purpose, String user_id, List<String> image_url) {
         this.title = title;
         this.description = description;
         this.district = district;

@@ -33,7 +33,7 @@ public class immobileController {
 
     @PostMapping(consumes = "multipart/form-data")
     public ResponseEntity<String> saveImmobile(@ModelAttribute ImmobileDTO immobileDTO) {
-        String immobileImageUrl = immobileService.saveImmobile(immobileDTO);
-        return ResponseEntity.ok(immobileImageUrl);
+        List<String> immobileImageUrl = immobileService.saveImmobile(immobileDTO);
+        return ResponseEntity.ok(immobileImageUrl.toString());
     }
 }
