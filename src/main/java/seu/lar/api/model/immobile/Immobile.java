@@ -28,7 +28,9 @@ public class Immobile {
     private boolean status;
     private String type;
     private String purpose;
-    private String user_id;
+
+    @Column(name = "user_id")
+    private String userId;
 
     @Convert(converter = ListStringConverter.class)
     @Column(name = "image_url", columnDefinition = "TEXT[]")
@@ -44,7 +46,7 @@ public class Immobile {
         this.status = status;
         this.type = type;
         this.purpose = purpose;
-        this.user_id = user_id;
+        this.userId = user_id;
         this.image_url = image_url;
     }
 

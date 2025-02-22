@@ -31,6 +31,12 @@ public class immobileController {
                 .orElse(ResponseEntity.notFound().build());
     }
 
+    @GetMapping("/user/{userId}")
+    public ResponseEntity<List<Immobile>> getImmobileByUserId(@PathVariable String userId) {
+        List<Immobile> immobiles = immobileRepository.findByUserId(userId);
+        return ResponseEntity.ok(immobiles);
+    }
+
     @PostMapping(consumes = "multipart/form-data")
     public ResponseEntity<String> saveImmobile(@ModelAttribute ImmobileDTO immobileDTO) {
         List<String> immobileImageUrl = immobileService.saveImmobile(immobileDTO);
